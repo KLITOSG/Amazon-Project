@@ -656,5 +656,35 @@ const products = [
       "apparel",
       "mens"
     ]
+  },
+  {
+    id: "f0e1c7d5-3b6a-4f8e-9c2b-1e2f3d4a5b6c",
+    image: "images/products/backpack.jpg",
+    name: "Waterproof Backpack with USB Charging Port",
+    rating: {
+      stars: 4.5,
+      count: 215
+    },
+    priceCents: 2999,
+    keywords: [
+      "backpacks",
+      "bags",
+      "travel"
+    ]
+  },
+  {
+    id: "f1e2d3c4-b5a6-7e8f-9a0b-1c2d3e4f5g6h",
+    image: "images/products/umbrella.jpg",
+    name: "Automatic Open/Close Umbrella - Black",
+    rating: {
+      stars: 5,
+      count: 150
+    },
+    priceCents: 999,
+    keywords: [
+      "umbrella",
+      "rain gear",
+      "accessories"
+    ]
   }
 ];
