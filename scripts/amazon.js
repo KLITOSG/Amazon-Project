@@ -1,6 +1,8 @@
 
 let productsHTML = '';
 
+const addedMessageTimeouts = {};
+
 products.forEach(product => {
   productsHTML += `<div class="product-container">
           <div class="product-image-container">
@@ -16,7 +18,7 @@ products.forEach(product => {
             <img class="product-rating-stars"
               src="images/ratings/rating-${product.rating.stars * 10}.png">
             <div class="product-rating-count link-primary">
-              ${product.rating}
+              ${product.rating.count}
             </div>
           </div>
 
@@ -41,7 +43,7 @@ products.forEach(product => {
 
           <div class="product-spacer"></div>
 
-          <div class="added-to-cart">
+          <div class="added-to-cart added-JS-${product.id}">
             <img src="images/icons/checkmark.png">
             Added
           </div>
@@ -93,5 +95,18 @@ document.querySelectorAll('.add-to-cart-JS')
       
       document.querySelector('.cart-quantity-Js')
         .innerHTML = cartQuantity;
-      })
+
+      const addedMessage = document.querySelector(`.added-JS-${productId}`);
+      addedMessage.classList.add('added-to-cart-visible');
+
+      const previousTimeout = addedMessageTimeouts[productId];
+      if (previousTimeout) {
+        clearTimeout(previousTimeout);
+      }
+
+      const timeoutId = setTimeout(() => {
+        addedMessage.classList.remove('added-to-cart-visible');
+      }, 2000);
+      addedMessageTimeouts[productId] = timeoutId;
     });
+});
