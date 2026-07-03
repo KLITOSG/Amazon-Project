@@ -71,10 +71,18 @@ function updateCartQuantity() {
     cartQuantity += cartItem.quantity
   })
       
+ if (cartQuantity === 0) {
   document.querySelector('.cart-quantity-Js')
-   .innerHTML = cartQuantity;
+    .innerHTML = '';
+ }
+ else {
+  document.querySelector('.cart-quantity-Js')
+    .innerHTML = cartQuantity;
+ }
 
 };
+
+updateCartQuantity();
 
 document.querySelectorAll('.add-to-cart-JS')
   .forEach(button => {
