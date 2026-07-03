@@ -1,4 +1,7 @@
-import {cart, removeFromCart, calculateCartQuantity} from'../data/cart.js';
+import {cart, 
+  removeFromCart, 
+  calculateCartQuantity,
+  updateCartQuantity} from'../data/cart.js';
 import {products} from '../data/products.js';
 import {formatCurrency} from './utils/money.js';
 
@@ -36,7 +39,7 @@ cartHTML += `
       </div>
       <div class="product-quantity">
         <span>
-          Quantity: <span class="quantity-label">${cartItem.quantity}</span>
+          Quantity: <span class="quantity-label quantity-label-Js-${matchingProduct.id}">${cartItem.quantity}</span>
         </span>
         <span class="update-quantity-link link-primary update-link-Js" data-product-id="${matchingProduct.id}">
           Update
@@ -110,17 +113,17 @@ document.querySelectorAll('.delete-link-Js').forEach(link => {
 
     container.remove();
 
-    updateCartQuantity();
+    updateCheckoutQuantity();
   });
 });
 
-function updateCartQuantity() {
+function updateCheckoutQuantity() {
   const cartQuantity = calculateCartQuantity();
 
  document.querySelector('.return-to-home-link-Js').innerHTML = `${cartQuantity} items`;
 };
 
-updateCartQuantity();
+updateCheckoutQuantity();
 
 document.querySelectorAll('.update-link-Js').forEach(link => {
   link.addEventListener('click', () => {
@@ -141,6 +144,24 @@ document.querySelectorAll('.save-link-Js').forEach(link => {
     container.classList.remove('updating-quantity');
 
     const quantityInput = document.querySelector(`.quantity-input-Js-${productId}`);
+
     const newQuantity = Number(quantityInput.value);
+
+    if(newQuantity < 0 || newQuantity >= 1000) {
+      alert('Quantity must be at least 0 and less than 1000');
+      return;
+    }
+
+    updateCartQuantity(productId, newQuantity);
+
+     const container = document.querySelector(`.cart-item-container-Js-${productId}`);
+
+     container.classList.remove('updating-quantity');
+
+    const quantityLabel = document.querySelector(`.quantity-label-Js-${productId}`);
+
+    quantityLabel.innerHTML = newQuantity;
+
+    updateCheckoutQuantity();
   });
 });
