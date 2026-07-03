@@ -41,7 +41,7 @@ cartHTML += `
         <span class="update-quantity-link link-primary update-link-Js" data-product-id="${matchingProduct.id}">
           Update
         </span>
-        <input class="quantity-input">
+        <input class="quantity-input quantity-input-Js-${matchingProduct.id}">
         <span class = "save-quantity-link link-primary save-link-Js" data-product-id="${matchingProduct.id}">Save</span>
         <span class="delete-quantity-link link-primary delete-link-Js" data-product-id="${matchingProduct.id}">
           Delete
@@ -139,5 +139,8 @@ document.querySelectorAll('.save-link-Js').forEach(link => {
     const container = document.querySelector(`.cart-item-container-Js-${productId}`);
 
     container.classList.remove('updating-quantity');
+
+    const quantityInput = document.querySelector(`.quantity-input-Js-${productId}`);
+    const newQuantity = Number(quantityInput.value);
   });
 });
