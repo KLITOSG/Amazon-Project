@@ -175,6 +175,7 @@ const isChecked = deliveryOption.id ===cartItem.deliveryOptionId
       quantityLabel.innerHTML = newQuantity;
 
       updateCheckoutQuantity();
+      renderPaymentSummary();
     });
   });
 
