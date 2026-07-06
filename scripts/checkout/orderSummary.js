@@ -3,10 +3,11 @@ import {cart,
   calculateCartQuantity,
   updateCartQuantity,
   updateDeliveryOption} from'../../data/cart.js';
-import {products} from '../../data/products.js';
+import {products, getProductById} from '../../data/products.js';
 import {formatCurrency} from '../utils/money.js';
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
-import {deliveryOptions} from '../../data/deliveryOptions.js';
+import {deliveryOptions, getDeliveryOptionById} from '../../data/deliveryOptions.js';
+import {renderPaymentSummary} from './paymentSummary.js';
 
 const today = dayjs();
 const deliveryDate = today.add(7, 'days');
@@ -18,23 +19,11 @@ export function renderOrderSummary() {
   cart.forEach(cartItem => {
     const productId = cartItem.productId;
 
-    let matchingProduct;
-
-    products.forEach(product => {
-      if (product.id === productId) {
-        matchingProduct = product;
-      }
-    });
+    const matchingProduct = getProductById(productId);
 
     const deliveryOptionId = cartItem.deliveryOptionId;
 
-    let deliveryOption;
-
-    deliveryOptions.forEach(option => {
-      if(option.id === deliveryOptionId) {
-        deliveryOption = option;
-      }
-    });
+    let deliveryOption = getDeliveryOptionById(deliveryOptionId);
 
     const today = dayjs();
     const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
@@ -129,12 +118,14 @@ const isChecked = deliveryOption.id ===cartItem.deliveryOptionId
     link.addEventListener('click', () => {
       const productId = link.dataset.productId;
       removeFromCart(productId);
+    
 
       const container = document.querySelector(`.cart-item-container-Js-${productId}`);
 
       container.remove();
 
       updateCheckoutQuantity();
+      renderPaymentSummary();
     });
   });
 
