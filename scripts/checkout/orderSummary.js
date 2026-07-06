@@ -183,6 +183,7 @@ const isChecked = deliveryOption.id ===cartItem.deliveryOptionId
       const{productId, deliveryOptionId} = element.dataset;
       updateDeliveryOption(productId,deliveryOptionId);
       renderOrderSummary();
+      renderPaymentSummary();
     })
   })
   }
