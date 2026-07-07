@@ -121,9 +121,7 @@ const isChecked = deliveryOption.id ===cartItem.deliveryOptionId
     
 
       const container = document.querySelector(`.cart-item-container-Js-${productId}`);
-
       container.remove();
-
       updateCheckoutQuantity();
       renderPaymentSummary();
     });
@@ -188,4 +186,5 @@ const isChecked = deliveryOption.id ===cartItem.deliveryOptionId
     })
   })
   }
+
 
