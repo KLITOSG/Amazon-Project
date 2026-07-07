@@ -54,14 +54,21 @@ export function renderOrderSummary() {
           <span>
             Quantity: <span class="quantity-label quantity-label-Js-${matchingProduct.id}">${cartItem.quantity}</span>
           </span>
+
           <span class="update-quantity-link link-primary update-link-Js" data-product-id="${matchingProduct.id}">
             Update
           </span>
+
           <input class="quantity-input quantity-input-Js-${matchingProduct.id}">
-          <span class = "save-quantity-link link-primary save-link-Js" data-product-id="${matchingProduct.id}">Save</span>
+
+          <span class = "save-quantity-link link-primary save-link-Js" data-product-id="${matchingProduct.id}">
+            Save
+          </span>
+
           <span class="delete-quantity-link link-primary delete-link-Js" data-product-id="${matchingProduct.id}">
             Delete
           </span>
+
         </div>
       </div>
 
@@ -185,8 +192,8 @@ const isChecked = deliveryOption.id ===cartItem.deliveryOptionId
       updateDeliveryOption(productId,deliveryOptionId);
       renderOrderSummary();
       renderPaymentSummary();
-    })
-  })
-  }
+    });
+  });
 
+ };
 
