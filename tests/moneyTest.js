@@ -3,6 +3,8 @@
 import { formatCurrency } from "../scripts/utils/money.js";
 
 
+console.log('Tets suite: formatCurrency');
+
 console.log('converts cents to dollars');
 
 if (formatCurrency(2095) === '$20.95') {
