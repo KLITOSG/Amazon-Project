@@ -1,16 +1,16 @@
 import {validDeliveryOption} from './deliveryOptions.js';
 
 export class Cart {
-  cartItems = undefined;
-  localStorageKey = undefined;
+  cartItems;
+  #localStorageKey;
 
   constructor(localStorageKey) {
-    this.localStorageKey = localStorageKey;
-    this.loadFromStorage();
+    this.#localStorageKey = localStorageKey;
+    this.#loadFromStorage();
   }
 
-  loadFromStorage() {
-    const savedItems = JSON.parse(localStorage.getItem(this.localStorageKey) || '[]');
+  #loadFromStorage() {
+    const savedItems = JSON.parse(localStorage.getItem(this.#localStorageKey) || '[]');
     this.cartItems = Array.isArray(savedItems) ? savedItems : [];
 
     this.cartItems.forEach(cartItem => {
@@ -21,7 +21,7 @@ export class Cart {
   }
 
   saveToLocalStorage() {
-    localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartItems));
+    localStorage.setItem(this.#localStorageKey, JSON.stringify(this.cartItems));
   }
 
   addToCart(productId, quantity = 1) {
