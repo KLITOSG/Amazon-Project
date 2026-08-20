@@ -1,3 +1,5 @@
+import { formatCurrency } from "../scripts/utils/money.js";
+
 class Product{
   id;
   image;
@@ -17,6 +19,14 @@ class Product{
     this.keywords = productDetails.keywords;
     this.type = productDetails.type;
     this.sizeChartLink = productDetails.sizeChartLink;
+  }
+
+  getStarsUrl(){
+    return `images/ratings/rating-${this.rating.stars * 10}.png`;
+  }
+
+  getPrice(){
+    return formatCurrency(this.priceCents);
   }
 }
 
@@ -724,4 +734,3 @@ export function getProductById(productId) {
 
     return matchingProduct;
 }
-
