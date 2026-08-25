@@ -44,6 +44,10 @@ products.forEach(product => {
             </select>
           </div>
 
+          <div class="product-size-chart">
+            ${product.extraInfoHTML()}
+          </div>  
+
           <div class="product-spacer"></div>
 
           <div class="added-to-cart added-JS-${product.id}">
