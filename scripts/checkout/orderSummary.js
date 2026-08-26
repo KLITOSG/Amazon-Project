@@ -2,7 +2,7 @@ import {cart,
   removeFromCart, 
   calculateCartQuantity,
   updateCartQuantity,
-  updateDeliveryOption} from'../../data/cart.js';
+  updateDeliveryOption} from'../../data/cart-class.js';
 
 import {products, getProductById} from '../../data/products.js';
 import {formatCurrency} from '../utils/money.js';
@@ -21,7 +21,7 @@ const formattedDeliveryDate = deliveryDate.format('dddd, MMMM D');
 export function renderOrderSummary() {
   let cartHTML = '';
 
-  cart.forEach(cartItem => {
+  cart.cartItems.forEach(cartItem => {
     const productId = cartItem.productId;
 
     const matchingProduct = getProductById(productId);
