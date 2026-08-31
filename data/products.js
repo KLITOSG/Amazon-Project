@@ -82,6 +82,38 @@ export class Appliance extends Product{
   }
 }
 
+export let products = [];
+
+export function loadProducts(fun) {
+  const xhr = new XMLHttpRequest();
+
+  xhr.addEventListener('load', () => {
+    if (xhr.status >= 200 && xhr.status < 300) {
+      products = JSON.parse(xhr.response).map(productDetails => {
+        if (productDetails.type === "clothing") {
+          return new Clothing(productDetails);
+        }
+        if (productDetails.type === "appliance") {
+          return new Appliance(productDetails);
+        }
+        return new Product(productDetails);
+      });
+
+      fun();
+      return;
+    }
+
+    console.error('Failed to load products');
+  });
+
+  xhr.open('GET', '/backend/products.json');
+  xhr.send();
+}
+
+export function getProductById(productId) {
+  return products.find(product => product.id === productId);
+}
+/*
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -793,15 +825,4 @@ export const products = [
   return new Product(productDetails);
 });
 
-export function getProductById(productId) {
-    let matchingProduct;
-
-    products.forEach(product => {
-      if (product.id === productId) {
-        matchingProduct = product;
-      }
-    });
-
-    return matchingProduct;
-}
- 
+ */
