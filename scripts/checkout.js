@@ -1,12 +1,23 @@
 import { renderCheckoutHeader } from './checkout/checkoutHeader.js';
 import {renderOrderSummary} from './checkout/orderSummary.js';
 import { renderPaymentSummary } from './checkout/paymentSummary.js';
-import '../data/cart-class.js';
 import {loadProducts} from '../data/products.js';
 
-loadProducts(() => {
+
+Promise.all([ 
+  new Promise((resolve, reject) => {
+    loadProducts(() => {
+    resolve('val1');
+   });
+ }),
+ new Promise((resolve) => {
+    resolve();
+  })
+
+]).then((values) => {
   renderCheckoutHeader();
-  renderPaymentSummary();
   renderOrderSummary();
-});
+  renderPaymentSummary(); 
+})
+
 

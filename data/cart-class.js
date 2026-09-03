@@ -6,10 +6,10 @@ export class Cart {
 
   constructor(localStorageKey) {
     this.#localStorageKey = localStorageKey;
-    this.#loadFromStorage();
+    this.loadFromStorage();
   }
 
-  #loadFromStorage() {
+  loadFromStorage() {
     const savedItems = JSON.parse(localStorage.getItem(this.#localStorageKey) || '[]');
     this.cartItems = Array.isArray(savedItems) ? savedItems : [];
 
@@ -103,6 +103,11 @@ export class Cart {
 
 export const cart = new Cart('cart-oop');
 export const businessCart = new Cart('businessCart');
+
+export function loadCart(callback) {
+  cart.loadFromStorage();
+  callback();
+}
 
 export function addToCart(productId, quantity) {
   cart.addToCart(productId, quantity);

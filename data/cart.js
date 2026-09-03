@@ -12,6 +12,11 @@ export function loadFromStorage() {
   }
 };
 
+export function loadCart(callback) {
+  loadFromStorage();
+  callback();
+}
+
 function saveToLocalStorage() {
   localStorage.setItem('cart', JSON.stringify(cart));
 }
@@ -112,3 +117,4 @@ export function updateQuantity(productId,newQuantity) {
 
   saveToLocalStorage();
 }
+
