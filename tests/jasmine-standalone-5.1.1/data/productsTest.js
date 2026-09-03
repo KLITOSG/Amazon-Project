@@ -1,4 +1,4 @@
-import { Appliance, Clothing, Product } from '../../../data/products.js';
+import { Appliance, Clothing, Product, loadProducts, products } from '../../../data/products.js';
 
 const productDetails = {
   id: 'product-id',
@@ -69,5 +69,15 @@ describe('Test Suite: Appliance', () => {
     expect(appliance.extraInfoHTML()).toContain('manual.pdf');
     expect(appliance.extraInfoHTML()).toContain('Warranty');
     expect(appliance.extraInfoHTML()).toContain('warranty.pdf');
+  });
+});
+
+describe('Test Suite: loadProducts', () => {
+  it('loads products from the backend', (done) => {
+    loadProducts(() => {
+      expect(products.length).toBeGreaterThan(0);
+      expect(products[0] instanceof Product).toBeTrue();
+      done();
+    });
   });
 });

@@ -4,20 +4,14 @@ import { renderPaymentSummary } from './checkout/paymentSummary.js';
 import {loadProducts} from '../data/products.js';
 
 
-Promise.all([ 
-  new Promise((resolve, reject) => {
+new Promise((resolve) => {
     loadProducts(() => {
-    resolve('val1');
-   });
- }),
- new Promise((resolve) => {
-    resolve();
-  })
-
-]).then((values) => {
+      resolve();
+    });
+  }).then(() => {
   renderCheckoutHeader();
   renderOrderSummary();
   renderPaymentSummary(); 
-})
+  });
 
 
