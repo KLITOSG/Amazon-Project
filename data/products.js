@@ -84,8 +84,12 @@ export class Appliance extends Product{
 
 export let products = [];
 
+export function getProductById(productId) {
+  return products.find(product => product.id === productId);
+}
+
 export function loadProducts(callback) {
-  fetch('https://supersimplebackend.dev/products').then((response) => {
+  return fetch('https://supersimplebackend.dev/products').then((response) => {
     return response.json();
   }).then((productsData) => {
     products = productsData.map(productDetails => {
@@ -97,7 +101,10 @@ export function loadProducts(callback) {
       }
       return new Product(productDetails);
     });
-    callback();
+    if (callback) {
+      callback();
+    }
+    return products;
   });
 }
 
