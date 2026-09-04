@@ -5,6 +5,9 @@ import {loadProducts} from '../data/products.js';
 import {loadCart} from '../data/cart-class.js';
 
 async function loadPage() {
+
+  try {
+   
    await loadProducts();
 
    await new Promise ((resolve) => {
@@ -12,6 +15,15 @@ async function loadPage() {
       resolve();
     });
    });
+
+  }
+  
+  catch (error) {
+    console.error('Error loading page:', error);
+    document.querySelector('.order-summary-Js').innerHTML = 'Unable to load your order. Please refresh the page and try again.';
+    document.querySelector('.payment-summary-Js').innerHTML = '';
+    return;
+  }
 
   renderCheckoutHeader();
   renderOrderSummary();
