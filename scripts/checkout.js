@@ -16,6 +16,10 @@ async function loadPage() {
     });
    });
 
+   renderCheckoutHeader();
+   renderOrderSummary();
+   renderPaymentSummary();
+
   }
   
   catch (error) {
@@ -25,9 +29,6 @@ async function loadPage() {
     return;
   }
 
-  renderCheckoutHeader();
-  renderOrderSummary();
-  renderPaymentSummary();
 }
 loadPage();
 
