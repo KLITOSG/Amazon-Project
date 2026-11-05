@@ -14,3 +14,7 @@ This repository contains a course-provided Amazon-style storefront starter proje
 - CSS3
 - JavaScript
 - JSON
+
+## Live Demo
+
+[Open the storefront](https://klitosg.github.io/Amazon-Project/amazon.html)
