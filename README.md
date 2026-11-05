@@ -17,4 +17,4 @@ This repository contains a course-provided Amazon-style storefront starter proje
 
 ## Live Demo
 
-[Open the storefront](https://klitosg.github.io/Amazon-Project/amazon.html)
+[Open the storefront](https://klitosg.github.io/portfolio/amazon-demo/amazon.html)
